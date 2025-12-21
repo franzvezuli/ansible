@@ -1,0 +1,7 @@
+- name: Gather Facts
+  hosts: all
+  gather_facts: true
+
+- name: Setup macOS
+  import_playbook: mac-setup.yml
+  when: ansible_facts['os_family'] == "Darwin"

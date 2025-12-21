@@ -4,17 +4,19 @@
   # Change to true if running this file directly
   gather_facts: false
 
+  vars:
+    upgrade_apps: false
+
   tasks:
     - name: Ensure Homebrew and all formulae are updated/upgraded
       community.general.homebrew:
-        update_homebrew: true
-        upgrade_all: true
+        update_homebrew: "{{ upgrade_apps | bool }}"
+        upgrade_all: "{{ upgrade_apps | bool }}"
 
     - name: Install and update Applications via Homebrew Cask
       community.general.homebrew_cask:
         name: "{{ item }}"
-        state: latest
-        greedy: true
+        state: "{{ upgrade_apps | bool | ternary('latest', 'present') }}"
       loop:
         - stats
         - sublime-text

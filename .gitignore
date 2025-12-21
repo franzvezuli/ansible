@@ -5,4 +5,5 @@
 !ansible.cfg
 !inventory
 !mac-setup.yml
+!main.yml
 !README.md
