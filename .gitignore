@@ -2,4 +2,7 @@
 /*
 
 # Include List
+!ansible.cfg
+!inventory
+!mac-setup.yml
 !README.md
