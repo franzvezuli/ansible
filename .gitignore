@@ -2,6 +2,7 @@
 /*
 
 # Include List
+!script
 !ansible.cfg
 !inventory
 !mac-setup.yml

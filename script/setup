@@ -1,0 +1,17 @@
+#!/bin/bash
+
+main() {
+  if [[ "$(uname)" == "Darwin" ]]; then
+    install_osx_dependencies
+  fi
+  pipx_ensurepath
+  install_ansible
+  run_setup_playbook
+}
+
+# Source helper scripts
+source "$(dirname "$0")/echo"
+source "$(dirname "$0")/osx"
+source "$(dirname "$0")/ansible"
+
+main "$@"

@@ -1,0 +1,33 @@
+#!/bin/bash
+
+pipx_ensurepath() {
+  print_info "Ensuring pipx path..."
+  pipx ensurepath
+  export PATH="$PATH:$HOME/.local/bin"
+}
+
+install_ansible() {
+  if command -v ansible &> /dev/null; then
+    print_info "Ansible is already installed."
+  else
+    print_info "Ansible not found. Installing via pipx..."
+    pipx install --include-deps ansible
+    print_success "Ansible installed successfully."
+  fi
+}
+
+run_setup_playbook() {
+  print_info "Running Ansible playbook..."
+  ansible-playbook main.yml
+}
+
+run_update_playbook() {
+  print_info "Running Ansible update playbook..."
+  ansible-playbook main.yml -e "upgrade_apps=true"
+}
+
+upgrade_ansible() {
+  print_info "Upgrading Ansible..."
+  pipx upgrade --include-injected ansible
+  print_success "Ansible upgraded successfully."
+}

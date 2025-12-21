@@ -1,0 +1,26 @@
+#!/bin/bash
+
+install_osx_dependencies() {
+  install_brew
+  install_pipx
+}
+
+install_brew() {
+  if command -v brew &> /dev/null; then
+    print_info "Homebrew is already installed."
+  else
+    print_info "Homebrew not found. Installing..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    print_success "Homebrew installed successfully."
+  fi
+}
+
+install_pipx() {
+  if command -v pipx &> /dev/null; then
+    print_info "pipx is already installed."
+  else
+    print_info "pipx not found. Installing via brew..."
+    brew install pipx
+    print_success "pipx installed successfully."
+  fi
+}

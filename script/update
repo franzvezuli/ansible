@@ -1,0 +1,14 @@
+#!/bin/bash
+
+main() {
+  print_info "Updating applications and system..."
+  upgrade_ansible
+  run_update_playbook
+  print_success "Update complete."
+}
+
+# Source the echo and ansible functions
+source "$(dirname "$0")/echo"
+source "$(dirname "$0")/ansible"
+
+main "$@"
