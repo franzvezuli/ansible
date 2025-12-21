@@ -5,3 +5,5 @@ Run `script/setup` to setup a new Mac OS X machine with all tools and applicatio
 
 ### Updating Applications
 Run `script/update` to update all installed applications.
+
+This will take longer than running `script/setup` because it checks for updates for all installed applications.
