@@ -1,9 +1,23 @@
-# Ansible Playbooks
+# Ansible Scripts
 
-### First Time Setup
-Run `script/setup` to setup a new Mac OS X machine with all tools and applications installed.
+My personal Ansible scripts for setting up or updating my machines.
 
-### Updating Applications
-Run `script/update` to update all installed applications.
+## Table of Contents
+- [Scripts](#scripts)
+    - [Helper Scripts](#helper-scripts)
+- [Ansible Playbooks](#ansible-playbooks)
 
-This will take longer than running `script/setup` because it checks for updates for all installed applications.
+## Scripts
+
+The main entrypoints are shell scripts to simplify even the installation of Ansible itself.
+- **`script/setup`**: The entry point for initial machine setup.
+- **`script/update`**: The entry point for updating Ansible itself and all installed applications.
+
+### Helper Scripts
+- **`script/osx`**: Contains macOS-specific dependency installation.
+- **`script/ansible`**: Contains shared Ansible-related tasks.
+- **`script/echo`**: Utility functions for color-coded output.
+
+## Ansible Playbooks
+- **`main.yml`**: The main playbook entry point.
+- **`mac-setup.yml`**: The playbook for macOS-specific setup tasks.
