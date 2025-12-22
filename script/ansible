@@ -1,16 +1,12 @@
 #!/bin/bash
 
-pipx_ensurepath() {
-  print_info "Ensuring pipx path..."
-  pipx ensurepath
-  export PATH="$PATH:$HOME/.local/bin"
-}
-
 install_ansible() {
   if command -v ansible &> /dev/null; then
     print_info "Ansible is already installed."
   else
     print_info "Ansible not found. Installing via pipx..."
+    pipx ensurepath
+    export PATH="$PATH:$HOME/.local/bin"
     pipx install --include-deps ansible
     print_success "Ansible installed successfully."
   fi
