@@ -4,6 +4,11 @@
   # Change to true if running this file directly
   gather_facts: false
 
+  vars_prompt:
+    - name: brew_sudo_pass
+      prompt: "Enter your macOS sudo password (for Docker installation)"
+      private: yes
+
   vars:
     upgrade_apps: false
 
@@ -17,10 +22,13 @@
       community.general.homebrew_cask:
         name: "{{ item }}"
         state: "{{ upgrade_apps | bool | ternary('latest', 'present') }}"
+        accept_external_apps: true
+        sudo_password: "{{ brew_sudo_pass }}"
       loop:
+        - cloudflare-warp
+        - discord
+        - docker-desktop
+        - firefox
+        - intellij-idea
         - stats
         - sublime-text
-        - discord
-        - firefox
-
-# TODO: cloudflare-warp
