@@ -1,15 +1,15 @@
-# Ansible Playbooks
+# Ansible Scripts
+
+My personal Ansible scripts for setting up or updating my machines.
 
 ## Table of Contents
-- [First Time Setup](#first-time-setup)
-- [Updating Applications](#updating-applications)
-- [Implementation](#implementation)
-  - [Control Flow](#control-flow)
+- [Scripts](#scripts)
+    - [Helper Scripts](#helper-scripts)
+- [Ansible Playbooks](#ansible-playbooks)
 
 ## Scripts
 
-The project is structured with modular shell scripts to handle environment preparation and Ansible for system configuration.
-
+The main entrypoints are shell scripts to simplify even the installation of Ansible itself.
 - **`script/setup`**: The entry point for initial machine setup.
 - **`script/update`**: The entry point for updating Ansible itself and all installed applications.
 
