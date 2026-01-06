@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Set the image and container name
+IMAGE_NAME="ansible-fedora-test"
+CONTAINER_NAME="ansible-test-container"
+
+# Build the Docker image
+echo "Building Docker image $IMAGE_NAME..."
+docker build -t "$IMAGE_NAME" .
+
+# Run the container interactively
+# --rm: Automatically remove the container when it exits
+# -it: Interactive terminal
+# --name: Assign a name to the container
+echo "Running container $CONTAINER_NAME..."
+docker run -it --rm --name "$CONTAINER_NAME" "$IMAGE_NAME"

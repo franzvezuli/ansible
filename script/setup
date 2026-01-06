@@ -1,9 +1,20 @@
 #!/bin/bash
 
+install_dependencies() {
+  case "$(uname)" in
+    Darwin)
+      install_osx_dependencies
+      ;;
+    Linux)
+      if grep -qs "fedora" /etc/os-release; then
+        install_fedora_dependencies
+      fi
+      ;;
+  esac
+}
+
 main() {
-  if [[ "$(uname)" == "Darwin" ]]; then
-    install_osx_dependencies
-  fi
+  install_dependencies
   install_ansible
   run_setup_playbook
 }
@@ -11,6 +22,7 @@ main() {
 # Source helper scripts
 source "$(dirname "$0")/echo"
 source "$(dirname "$0")/osx"
+source "$(dirname "$0")/linux"
 source "$(dirname "$0")/ansible"
 
 main "$@"

@@ -1,7 +1,11 @@
-- name: Gather Facts
+- name: Setup
   hosts: all
   gather_facts: true
+  tasks:
+    - name: Setup macOS
+      include_tasks: mac.yml
+      when: ansible_facts['os_family'] == "Darwin"
 
-- name: Setup macOS
-  import_playbook: mac-setup.yml
-  when: ansible_facts['os_family'] == "Darwin"
+    - name: Setup Fedora
+      include_tasks: fedora.yml
+      when: ansible_facts['distribution'] == "Fedora"

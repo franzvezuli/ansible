@@ -1,0 +1,31 @@
+- name: Prompt for macOS sudo password
+  pause:
+    prompt: "Enter your macOS sudo password"
+    echo: no
+  register: sudo_pass_prompt
+  no_log: true
+
+- name: Set brew_sudo_pass variable
+  set_fact:
+    brew_sudo_pass: "{{ sudo_pass_prompt.user_input }}"
+  no_log: true
+
+- name: Ensure Homebrew and all formulae are updated/upgraded
+  community.general.homebrew:
+    update_homebrew: "{{ upgrade_apps | default(false) | bool }}"
+    upgrade_all: "{{ upgrade_apps | default(false) | bool }}"
+
+- name: Install and update Applications via Homebrew Cask
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+    state: "{{ upgrade_apps | default(false) | bool | ternary('latest', 'present') }}"
+    accept_external_apps: true
+    sudo_password: "{{ brew_sudo_pass }}"
+  loop:
+    - cloudflare-warp
+    - discord
+    - docker-desktop
+    - firefox
+    - intellij-idea
+    - stats
+    - sublime-text

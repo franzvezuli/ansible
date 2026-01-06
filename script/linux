@@ -1,0 +1,11 @@
+#!/bin/bash
+
+install_fedora_dependencies() {
+  if command -v pipx &> /dev/null; then
+    print_info "pipx is already installed."
+  else
+    print_info "pipx not found. Installing via dnf..."
+    sudo dnf install -y pipx
+    print_success "pipx installed successfully."
+  fi
+}

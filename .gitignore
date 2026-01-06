@@ -5,6 +5,6 @@
 !script
 !ansible.cfg
 !inventory
-!mac-setup.yml
+!mac.yml
 !main.yml
 !README.md
